@@ -1,4 +1,15 @@
+# Recycle bin project 
 #
+# Copy this script to your .bashrc, it will set up a recycle 
+# bin folder at $HOME/RecycleBin and when you use comman 
+# ' del ... ' to delete a file/folder it will copy it to 
+# recycle bin then it delete it. 
+#
+# Also, everytime you open your terminal, it will delete all 
+# last days files/folders in your recycle bin
+#
+
+
 TRASHDIR=$HOME/RecycleBin
 TRASHDIRTODAY=$(date | awk ' { print ($2$3) }')
 
