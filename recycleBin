@@ -1,0 +1,25 @@
+#
+TRASHDIR=$HOME/RecycleBin
+TRASHDIRTODAY=$(date | awk ' { print ($2$3) }')
+
+if [[ ! -d $TRASHDIR ]] ;
+then
+  mkdir $TRASHDIR
+fi
+
+if [[ ! -d $TRASHDIR/$TRASHDIRTODAY ]] ;
+then
+  mkdir $TRASHDIR/$TRASHDIRTODAY
+fi
+
+rm -rf $TRASHDIR/!($TRASHDIRTODAY)
+
+function del () {
+ f=$(sed -E 's/--?[a-z,A-Z]+//g' <<< $@ )
+ cd $TRASHDIR/$TRASHDIRTODAY
+ rm -rf $f
+ cd - > /dev/null
+ cp -r $f $TRASHDIR/$TRASHDIRTODAY
+ rm $@
+}
+
